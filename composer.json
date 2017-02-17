@@ -1,0 +1,30 @@
+{
+    "name": "hesto/fractalfy",
+    "description": "Laravel wrapper for Fractal.",
+    "keywords": ["fractal", "api", "laravel"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Andrzej Żmudziński",
+            "email": "biuro@deseco.pl"
+        },
+        {
+            "name": "Piotr Łosiak",
+            "email": "losiakp@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.5.9",
+        "league/fractal": "^0.14.0",
+        "illuminate/support": "~5.1.0|~5.2.0|~5.3.0|~5.4.0"
+    },
+    "require-dev": {
+        "illuminate/pagination": "^5.3"
+    },
+    "autoload": {
+        "psr-4": {
+           "Hesto\\Fractalfy\\": "src/"
+       }
+    },
+    "minimum-stability": "dev"
+}
