@@ -6,7 +6,7 @@ Laravel Wrapper for Fractal
 ### Step 1: Install Through Composer
 
 ```
-composer require hesto/fractalfy
+composer require codingphase/fractalfy
 ```
 
 ### Step 2: Register Service Provider
@@ -14,7 +14,7 @@ Add your new provider to the `providers` array of `config/app.php`:
 ```php
   'providers' => [
       // ...
-      Hesto\Fractalfy\FractalfyServiceProvider::class,
+      CodingPhase\Fractalfy\FractalfyServiceProvider::class,
       // ...
   ],
 ```

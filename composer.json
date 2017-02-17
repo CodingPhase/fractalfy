@@ -1,12 +1,12 @@
 {
-    "name": "hesto/fractalfy",
+    "name": "codingphase/fractalfy",
     "description": "Laravel wrapper for Fractal.",
     "keywords": ["fractal", "api", "laravel"],
     "license": "MIT",
     "authors": [
         {
             "name": "Andrzej Żmudziński",
-            "email": "biuro@deseco.pl"
+            "email": "jendrusha@gmail.com"
         },
         {
             "name": "Piotr Łosiak",
@@ -23,8 +23,7 @@
     },
     "autoload": {
         "psr-4": {
-           "Hesto\\Fractalfy\\": "src/"
+           "CodingPhase\\Fractalfy\\": "src/"
        }
-    },
-    "minimum-stability": "dev"
+    }
 }

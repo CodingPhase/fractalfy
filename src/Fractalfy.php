@@ -1,5 +1,5 @@
 <?php
-namespace Hesto\Fractalfy;
+namespace CodingPhase\Fractalfy;
 
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Response;
@@ -11,8 +11,8 @@ use League\Fractal\Manager;
 use League\Fractal\Pagination\CursorInterface;
 use League\Fractal\Pagination\PaginatorInterface;
 use League\Fractal\Serializer\SerializerAbstract;
-use Hesto\Fractalfy\Exceptions\InvalidTransformation;
-use Hesto\Fractalfy\Exceptions\NoTransformerSpecified;
+use CodingPhase\Fractalfy\Exceptions\InvalidTransformation;
+use CodingPhase\Fractalfy\Exceptions\NoTransformerSpecified;
 
 class Fractalfy implements JsonSerializable
 {
@@ -44,7 +44,7 @@ class Fractalfy implements JsonSerializable
      * @param null|callable|\League\Fractal\TransformerAbstract $transformer
      * @param null|\League\Fractal\Serializer\SerializerAbstract $serializer
      *
-     * @return \Hesto\Fractalfy\Fractalfy
+     * @return \CodingPhase\Fractalfy\Fractalfy
      */
     public static function create($data = null, $transformer = null, $serializer = null)
     {

@@ -1,5 +1,5 @@
 <?php
-namespace Hesto\Fractalfy\Exceptions;
+namespace CodingPhase\Fractalfy\Exceptions;
 
 use Exception;
 

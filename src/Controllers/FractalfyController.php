@@ -1,6 +1,6 @@
 <?php
 
-namespace Hesto\Fractalfy\Controllers;
+namespace CodingPhase\Fractalfy\Controllers;
 
 use Hesto\Fractalfy\Fractalfy;
 use Hesto\Fractalfy\Traits\Helpers;

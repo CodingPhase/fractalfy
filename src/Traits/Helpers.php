@@ -1,6 +1,6 @@
 <?php
 
-namespace Hesto\Fractalfy\Traits;
+namespace CodingPhase\Fractalfy\Traits;
 
 use Illuminate\Support\Facades\Response;
 use Symfony\Component\HttpFoundation\Response as SymfonyResponse;

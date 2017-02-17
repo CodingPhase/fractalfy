@@ -1,6 +1,6 @@
 <?php
 
-namespace Hesto\Fractalfy;
+namespace CodingPhase\Fractalfy;
 
 use Illuminate\Support\ServiceProvider;
 
