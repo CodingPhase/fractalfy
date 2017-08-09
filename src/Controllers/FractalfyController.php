@@ -2,8 +2,8 @@
 
 namespace CodingPhase\Fractalfy\Controllers;
 
-use Hesto\Fractalfy\Fractalfy;
-use Hesto\Fractalfy\Traits\Helpers;
+use CodingPhase\Fractalfy\Fractalfy;
+use CodingPhase\Fractalfy\Traits\Helpers;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
