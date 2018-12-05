@@ -2,24 +2,31 @@
 
 namespace CodingPhase\Fractalfy\Traits;
 
-use CodingPhase\Fractalfy\Filters\QueryFilters;
+use CodingPhase\Fractalfy\Filters\RelationFilters;
 use Illuminate\Database\Eloquent\Builder;
 
-/**
- * Class Filterable
- * @package CodingPhase\Fractalfy\Traits\Eloquent
- */
 trait Filterable
 {
     /**
      * Filter results
      *
      * @param Builder $builder
-     * @param QueryFilters $filters
+     * @param RelationFilters $filters
      * @return Builder
      */
-    public function scopeFilter(Builder $builder, QueryFilters $filters)
+    public function scopeFilter(Builder $builder, RelationFilters $filters)
     {
         return $filters->apply($builder);
+    }
+
+    /**
+     * @param RelationFilters $filters
+     * @return mixed
+     */
+    public function relationFilter(RelationFilters $filters)
+    {
+        $this->load($filters->applyRelations());
+
+        return $this;
     }
 }

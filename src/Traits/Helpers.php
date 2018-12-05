@@ -7,25 +7,25 @@ use Symfony\Component\HttpFoundation\Response as SymfonyResponse;
 
 trait Helpers
 {
-    protected $statusCode = SymfonyResponse::HTTP_OK;
+    protected $responseStatusCode = SymfonyResponse::HTTP_OK;
 
-    protected $message = null;
+    protected $responseMessage = null;
 
     /**
      * @return integer
      */
-    public function getStatusCode()
+    public function getResponseStatusCode()
     {
-        return $this->statusCode;
+        return $this->responseStatusCode;
     }
 
     /**
-     * @param int $statusCode
+     * @param int $responseStatusCode
      * @return $this
      */
-    public function setStatusCode($statusCode)
+    public function setResponseStatusCode($responseStatusCode)
     {
-        $this->statusCode = $statusCode;
+        $this->responseStatusCode = $responseStatusCode;
 
         return $this;
     }
@@ -33,18 +33,18 @@ trait Helpers
     /**
      * @return mixed
      */
-    public function getMessage()
+    public function getResponseMessage()
     {
-        return $this->message;
+        return $this->responseMessage;
     }
 
     /**
-     * @param $message
+     * @param $responseMessage
      * @return $this
      */
-    public function setMessage($message)
+    public function setResponseMessage($responseMessage)
     {
-        $this->message = $message;
+        $this->responseMessage = $responseMessage;
 
         return $this;
     }
@@ -56,8 +56,8 @@ trait Helpers
     public function respondNotFound($message = null)
     {
         return $this
-            ->setStatusCode(SymfonyResponse::HTTP_NOT_FOUND)
-            ->setMessage($message)
+            ->setResponseStatusCode(SymfonyResponse::HTTP_NOT_FOUND)
+            ->setResponseMessage($message)
             ->respondWithError();
     }
 
@@ -68,8 +68,8 @@ trait Helpers
     public function respondUnauthorized($message = null)
     {
         return $this
-            ->setStatusCode(SymfonyResponse::HTTP_UNAUTHORIZED)
-            ->setMessage($message)
+            ->setResponseStatusCode(SymfonyResponse::HTTP_UNAUTHORIZED)
+            ->setResponseMessage($message)
             ->respondWithError();
     }
 
@@ -80,8 +80,8 @@ trait Helpers
     public function respondUnprocessable($message = null)
     {
         return $this
-            ->setStatusCode(SymfonyResponse::HTTP_UNPROCESSABLE_ENTITY)
-            ->setMessage($message)
+            ->setResponseStatusCode(SymfonyResponse::HTTP_UNPROCESSABLE_ENTITY)
+            ->setResponseMessage($message)
             ->respondWithError();
     }
 
@@ -92,8 +92,8 @@ trait Helpers
     public function respondBadRequest($message = null)
     {
         return $this
-            ->setStatusCode(SymfonyResponse::HTTP_BAD_REQUEST)
-            ->setMessage($message)
+            ->setResponseStatusCode(SymfonyResponse::HTTP_BAD_REQUEST)
+            ->setResponseMessage($message)
             ->respondWithError();
     }
 
@@ -104,8 +104,8 @@ trait Helpers
     public function respondOK($message = null)
     {
         return $this
-            ->setStatusCode(SymfonyResponse::HTTP_OK)
-            ->setMessage($message)
+            ->setResponseStatusCode(SymfonyResponse::HTTP_OK)
+            ->setResponseMessage($message)
             ->respondWithSuccess();
     }
 
@@ -115,16 +115,16 @@ trait Helpers
     public function respondWithSuccess($statusCode = null)
     {
         if($statusCode != null) {
-            $this->setStatusCode($statusCode);
+            $this->setResponseStatusCode($statusCode);
         }
 
-        if ($this->message == null) {
-            $this->message = SymfonyResponse::$statusTexts[$this->getStatusCode()];
+        if ($this->responseMessage == null) {
+            $this->responseMessage = SymfonyResponse::$statusTexts[$this->getResponseStatusCode()];
         }
 
         return $this->respond([
-            'message'     => $this->getMessage(),
-            'status_code' => $this->getStatusCode(),
+            'message'     => $this->getResponseMessage(),
+            'status_code' => $this->getResponseStatusCode(),
         ]);
     }
 
@@ -134,17 +134,17 @@ trait Helpers
     public function respondWithError($statusCode = null)
     {
         if($statusCode != null) {
-            $this->setStatusCode($statusCode);
+            $this->setResponseStatusCode($statusCode);
         }
 
-        if ($this->message == null) {
-            $this->message = SymfonyResponse::$statusTexts[$this->getStatusCode()];
+        if ($this->responseMessage == null) {
+            $this->responseMessage = SymfonyResponse::$statusTexts[$this->getResponseStatusCode()];
         }
 
         return $this->respond([
             'error' => [
-                'message'     => $this->getMessage(),
-                'status_code' => $this->getStatusCode(),
+                'message'     => $this->getResponseMessage(),
+                'status_code' => $this->getResponseStatusCode(),
             ],
         ]);
     }
@@ -156,7 +156,7 @@ trait Helpers
      */
     public function respond($data, $headers = [])
     {
-        return Response::json($data, $this->getStatusCode(), $headers);
+        return Response::json($data, $this->getResponseStatusCode(), $headers);
     }
 
 }
