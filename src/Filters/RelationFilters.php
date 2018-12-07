@@ -32,7 +32,7 @@ abstract class RelationFilters
     /**
      * @var array
      */
-    public $requestedIncludes;
+    public $requestedIncludes = [];
 
     /**
      * @var array
