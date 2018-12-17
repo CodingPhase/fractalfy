@@ -66,12 +66,10 @@ abstract class RelationFilters
                 continue;
             }
 
+            $value = explode('|', $value);
+
             if (is_array($value) && count($value)) {
                 $this->$name($this->builder, $value);
-            } else {
-                if (strlen($value)) {
-                    $this->$name($this->builder, $value);
-                }
             }
         }
 
