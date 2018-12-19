@@ -69,7 +69,7 @@ abstract class RelationFilters
             $value = explode('|', $value);
 
             if (is_array($value) && count($value)) {
-                $this->$name($this->builder, $value);
+                $this->$name($this->builder, ...$value);
             }
         }
 
