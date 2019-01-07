@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 
-abstract class RelationFilters
+class RelationFilters
 {
     /**
      * @var
@@ -55,21 +55,20 @@ abstract class RelationFilters
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function apply(Builder $builder)
+    public function apply(Builder $builder, $classBasename)
     {
         $this->builder = $builder;
 
         foreach ($this->filters() as $name => $value) {
             $name = camel_case($name);
 
-            if (! method_exists($this, $name)) {
-                continue;
-            }
-
             $value = explode('|', $value);
 
             if (is_array($value) && count($value)) {
-                $this->$name($this->builder, ...$value);
+                $filterClassName = 'App\\Filters\\' . $classBasename . '\\'. ucfirst($name). 'Filter';
+                if (class_exists($filterClassName)) {
+                    call_user_func_array([$filterClassName, 'handle'], array_merge([$this->builder], $value));
+                }
             }
         }
 
@@ -102,21 +101,13 @@ abstract class RelationFilters
     {
         if (is_array($this->includeParams)) {
             foreach ($this->includeParams as $key => $relationFilters) {
-                $relationFiltersObject = app()->make('App\\Filters\\' . ucfirst($key) . 'Filters');
-                $this->relations->put($key, function ($query) use ($relationFilters, $relationFiltersObject) {
+                $model = ucfirst(str_singular($key));
+                $this->relations->put($key, function ($query) use ($relationFilters, $model) {
                     foreach ($relationFilters as $name => $value) {
-                        $name = camel_case($name);
-
-                        if (! method_exists($relationFiltersObject, $name)) {
-                            continue;
-                        }
+                        $relationFiltersObject = app()->make('App\\Filters\\' . $model . '\\' . ucfirst($name) . 'Filter');
 
                         if (is_array($value) && count($value)) {
-                            $relationFiltersObject->$name($query, ...$value);
-                        } else {
-                            if (strlen($value)) {
-                                $relationFiltersObject->$name($value);
-                            }
+                            call_user_func_array([$relationFiltersObject, 'handle'], array_merge([$query], $value));
                         }
                     }
                 });

@@ -11,21 +11,30 @@ trait Filterable
      * Filter results
      *
      * @param Builder $builder
-     * @param RelationFilters $filters
      * @return Builder
      */
-    public function scopeFilter(Builder $builder, RelationFilters $filters)
+    public function scopeFilter(Builder $builder)
     {
-        return $filters->apply($builder);
+        return app()->make(RelationFilters::class)->apply($builder, class_basename($this));
     }
 
     /**
-     * @param RelationFilters $filters
+     * Filter results
+     *
+     * @param Builder $builder
+     * @return Builder
+     */
+    public function scopewithFilteredRelations(Builder $builder)
+    {
+        return $builder->with(app()->make(RelationFilters::class)->applyRelations());
+    }
+
+    /**
      * @return mixed
      */
-    public function relationFilter(RelationFilters $filters)
+    public function filteredRelations()
     {
-        $this->load($filters->applyRelations());
+        $this->load(app()->make(RelationFilters::class)->applyRelations());
 
         return $this;
     }
