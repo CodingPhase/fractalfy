@@ -101,7 +101,8 @@ class RelationFilters
     {
         if (is_array($this->includeParams)) {
             foreach ($this->includeParams as $key => $relationFilters) {
-                $model = ucfirst(str_singular($key));
+                $keyArray = explode('.',$key);
+                $model = ucfirst(str_singular(end($keyArray)));
                 $this->relations->put($key, function ($query) use ($relationFilters, $model) {
                     foreach ($relationFilters as $name => $value) {
                         $relationFiltersObject = app()->make('App\\Filters\\' . $model . '\\' . ucfirst($name) . 'Filter');
