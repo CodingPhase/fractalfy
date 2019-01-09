@@ -15,6 +15,8 @@ trait Filterable
      */
     public function scopeFilter(Builder $builder)
     {
+        $builder = $builder->with(app()->make(RelationFilters::class)->applyRelations());
+
         return app()->make(RelationFilters::class)->apply($builder, class_basename($this));
     }
 
