@@ -34,7 +34,7 @@ trait Filterable
     /**
      * @return mixed
      */
-    public function filteredRelations()
+    public function loadFilteredRelations()
     {
         $this->load(app()->make(RelationFilters::class)->applyRelations());
 
