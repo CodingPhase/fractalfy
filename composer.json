@@ -15,8 +15,7 @@
     ],
     "require": {
         "php" : "^7.0",
-        "league/fractal": "0.*",
-        "illuminate/support": "~5.0"
+        "league/fractal": "0.*"
     },
     "extra": {
         "laravel": {
