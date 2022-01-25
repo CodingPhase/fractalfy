@@ -5,18 +5,10 @@
     "license": "MIT",
     "authors": [
         {
-            "name": "Andrzej Żmudziński",
-            "email": "jendrusha@gmail.com"
-        },
-        {
             "name": "Piotr Łosiak",
             "email": "losiakp@gmail.com"
         }
     ],
-    "require": {
-        "php" : "^7.0",
-        "league/fractal": "0.*"
-    },
     "extra": {
         "laravel": {
             "providers": [
